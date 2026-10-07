@@ -46,8 +46,7 @@ export default function WelcomeScreen({ onNext, soundEnabled }) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          Hey You ❤️
-        </motion.h1>
+          Only For You        </motion.h1>
 
         <motion.p
           className="welcome-subtitle"
