@@ -49,6 +49,20 @@ const getInitialScreen = () => {
   return unlocked === 'true' ? SCREENS.MAIN_STORY : SCREENS.WELCOME;
 };
 
+const getAudioUrl = (filePath) => {
+  if (!filePath) return '';
+  if (filePath.startsWith('http://') || filePath.startsWith('https://') || filePath.startsWith('data:')) {
+    return filePath;
+  }
+  const cleanPath = filePath.replace(/^(\.\/|\/)+/, '');
+  const baseUrl = import.meta.env.BASE_URL || './';
+  try {
+    return new URL(cleanPath, new URL(baseUrl, window.location.href)).href;
+  } catch (e) {
+    return filePath;
+  }
+};
+
 // ── App ───────────────────────────────────────────────────────────────────────
 export default function App() {
   const [screen, setScreen] = useState(getInitialScreen());
@@ -103,9 +117,9 @@ export default function App() {
     if (!audio) return;
     const song = playlist[currentTrackIndex];
     if (song?.file) {
-      const srcUrl = new URL(song.file, window.location.href).href;
-      if (audio.src !== srcUrl) {
-        audio.src = song.file;
+      const targetUrl = getAudioUrl(song.file);
+      if (audio.src !== targetUrl) {
+        audio.src = targetUrl;
         audio.playbackRate = 0.85;
         audio.loop = true;
         if (isPlaying) {
@@ -130,9 +144,9 @@ export default function App() {
 
     const audio = audioRef.current;
     if (audio && song?.file) {
-      const srcUrl = new URL(song.file, window.location.href).href;
-      if (!audio.src || audio.src !== srcUrl) {
-        audio.src = song.file;
+      const targetUrl = getAudioUrl(song.file);
+      if (!audio.src || audio.src !== targetUrl) {
+        audio.src = targetUrl;
       }
       audio.loop = true;
       audio.playbackRate = 0.85; // Play slowly
@@ -166,9 +180,9 @@ export default function App() {
       const audio = audioRef.current;
       const song = playlist[currentTrackIndex] || playlist[0];
       if (audio && song?.file) {
-        const srcUrl = new URL(song.file, window.location.href).href;
-        if (!audio.src || audio.src !== srcUrl) {
-          audio.src = song.file;
+        const targetUrl = getAudioUrl(song.file);
+        if (!audio.src || audio.src !== targetUrl) {
+          audio.src = targetUrl;
         }
         audio.playbackRate = 0.85;
         audio.volume = isMuted ? 0 : volume;
@@ -207,7 +221,8 @@ export default function App() {
     const audio = audioRef.current;
     const song = playlist[index];
     if (audio && song?.file) {
-      audio.src = song.file;
+      const targetUrl = getAudioUrl(song.file);
+      audio.src = targetUrl;
       audio.playbackRate = 0.85;
       audio.volume = isMuted ? 0 : volume;
       audio.play()
