@@ -70,10 +70,14 @@ export default function App() {
 
   const playlist = loveData.songs || [];
 
-  // ── Unlock AudioContext on first user interaction ──
+  // ── Unlock AudioContext and start background music on first user interaction ──
   useEffect(() => {
     const unlock = () => {
       unlockAudio();
+      const audio = audioRef.current;
+      if (audio) {
+        audio.playbackRate = 0.85;
+      }
       document.removeEventListener('click', unlock);
       document.removeEventListener('touchstart', unlock);
       document.removeEventListener('keydown', unlock);
@@ -93,33 +97,32 @@ export default function App() {
     localStorage.setItem('soundEnabled', soundEnabled);
   }, [soundEnabled]);
 
-  // ── Probe for MP3 file availability ──
-  useEffect(() => {
-    const song = playlist[currentTrackIndex];
-    if (!song?.file) return;
-    fetch(song.file, { method: 'HEAD' })
-      .then((r) => setMp3Available(r.ok))
-      .catch(() => setMp3Available(false));
-  }, [currentTrackIndex]);
-
-  // ── HTML5 Audio engine (used when MP3 exists) ──
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio || !mp3Available) return;
-    const song = playlist[currentTrackIndex];
-    if (!song?.file) return;
-    audio.src = song.file;
-    audio.volume = isMuted ? 0 : volume;
-  }, [currentTrackIndex, mp3Available]);
-
+  // ── HTML5 Audio engine ──
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+    const song = playlist[currentTrackIndex];
+    if (song?.file) {
+      const srcUrl = new URL(song.file, window.location.href).href;
+      if (audio.src !== srcUrl) {
+        audio.src = song.file;
+        audio.playbackRate = 0.85;
+        audio.loop = true;
+        if (isPlaying) {
+          audio.play()
+            .then(() => setMp3Available(true))
+            .catch(() => {
+              startAmbientMusic(soundEnabled);
+            });
+        }
+      }
+    }
+    audio.playbackRate = 0.85;
     audio.volume = isMuted ? 0 : volume;
     if (isAmbientPlaying()) setAmbientVolume(isMuted ? 0 : volume);
-  }, [volume, isMuted]);
+  }, [currentTrackIndex, volume, isMuted, playlist, soundEnabled, isPlaying]);
 
-  // ── Start music (called when entering main story) ──
+  // ── Start music (called on initial user interaction or entering story) ──
   const startMusic = () => {
     if (!soundEnabled) return;
     unlockAudio();
@@ -127,13 +130,18 @@ export default function App() {
 
     const audio = audioRef.current;
     if (audio && song?.file) {
-      audio.src = song.file;
+      const srcUrl = new URL(song.file, window.location.href).href;
+      if (!audio.src || audio.src !== srcUrl) {
+        audio.src = song.file;
+      }
       audio.loop = true;
+      audio.playbackRate = 0.85; // Play slowly
       audio.volume = isMuted ? 0 : volume;
       audio.play()
         .then(() => {
           setIsPlaying(true);
           setShowFloatingPlayer(true);
+          setMp3Available(true);
         })
         .catch(() => {
           // If MP3 fails or blocked, fallback to ambient music engine
@@ -158,34 +166,66 @@ export default function App() {
       const audio = audioRef.current;
       const song = playlist[currentTrackIndex] || playlist[0];
       if (audio && song?.file) {
-        if (!audio.src || !audio.src.includes(song.file)) {
+        const srcUrl = new URL(song.file, window.location.href).href;
+        if (!audio.src || audio.src !== srcUrl) {
           audio.src = song.file;
         }
+        audio.playbackRate = 0.85;
         audio.volume = isMuted ? 0 : volume;
         audio.play()
-          .then(() => setIsPlaying(true))
+          .then(() => {
+            setIsPlaying(true);
+            setMp3Available(true);
+            setShowFloatingPlayer(true);
+          })
           .catch(() => {
             startAmbientMusic(soundEnabled);
             setIsPlaying(true);
+            setShowFloatingPlayer(true);
           });
       } else {
         startAmbientMusic(soundEnabled);
         setIsPlaying(true);
+        setShowFloatingPlayer(true);
       }
     }
   };
 
   const handlePrev = () => {
+    unlockAudio();
     setCurrentTrackIndex((prev) => (prev === 0 ? playlist.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
+    unlockAudio();
     setCurrentTrackIndex((prev) => (prev + 1) % playlist.length);
+  };
+
+  const handleSelectTrack = (index) => {
+    unlockAudio();
+    setCurrentTrackIndex(index);
+    const audio = audioRef.current;
+    const song = playlist[index];
+    if (audio && song?.file) {
+      audio.src = song.file;
+      audio.playbackRate = 0.85;
+      audio.volume = isMuted ? 0 : volume;
+      audio.play()
+        .then(() => {
+          setIsPlaying(true);
+          setMp3Available(true);
+          setShowFloatingPlayer(true);
+        })
+        .catch(() => {
+          startAmbientMusic(soundEnabled);
+          setIsPlaying(true);
+        });
+    }
   };
 
   const handleSeek = (e) => {
     const audio = audioRef.current;
-    if (!audio || !mp3Available) return;
+    if (!audio) return;
     audio.currentTime = parseFloat(e.target.value);
   };
 
@@ -196,7 +236,13 @@ export default function App() {
   };
 
   const handleTimeUpdate = () => { setCurrentTime(audioRef.current?.currentTime || 0); };
-  const handleLoadedMetadata = () => { setDuration(audioRef.current?.duration || 0); };
+  const handleLoadedMetadata = () => {
+    if (audioRef.current) {
+      audioRef.current.playbackRate = 0.85;
+    }
+    setDuration(audioRef.current?.duration || 0);
+    setMp3Available(true);
+  };
   const handleAudioEnd = () => { handleNext(); };
 
   // ── Toggle sound master switch ──
@@ -329,6 +375,7 @@ export default function App() {
                 onSeek={handleSeek}
                 onVolumeChange={handleVolumeChange}
                 onToggleMute={() => setIsMuted((m) => !m)}
+                onSelectTrack={handleSelectTrack}
               />
             )}
 

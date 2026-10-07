@@ -91,7 +91,7 @@ export default function BirthdayReveal({ soundEnabled }) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.65, duration: 0.8 }}
           >
-            MY BESTIE 🎉
+            khammu 🎉
           </motion.h2>
 
           <motion.div
@@ -152,7 +152,7 @@ export default function BirthdayReveal({ soundEnabled }) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 4.2, duration: 0.6 }}
             >
-              Happy Birthday, bestie! ❤️🎉
+              Happy Birthday, vandri ! ❤️🎉
             </motion.p>
           </div>
         </motion.div>

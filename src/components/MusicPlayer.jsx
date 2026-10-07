@@ -1,7 +1,6 @@
-// src/components/MusicPlayer.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Music, Heart } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Music, ListMusic } from 'lucide-react';
 import { loveData } from '../data/loveData';
 import './MusicPlayer.css';
 
@@ -17,17 +16,18 @@ export default function MusicPlayer({
   onNext,
   onSeek,
   onVolumeChange,
-  onToggleMute
+  onToggleMute,
+  onSelectTrack
 }) {
   const playlist = loveData.songs || [];
   const currentSong = playlist[currentTrackIndex] || {
     title: "Our Song",
     artist: "Us ❤️",
-    cover: "/photos/photo1.jpg"
+    cover: "https://img.sanishtech.com/u/939e1fbffcad6bf66d4d59144580a1ab.jpg"
   };
 
   const formatTime = (timeInSec) => {
-    if (isNaN(timeInSec)) return "0:00";
+    if (isNaN(timeInSec) || !isFinite(timeInSec)) return "0:00";
     const minutes = Math.floor(timeInSec / 60);
     const seconds = Math.floor(timeInSec % 60);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
@@ -54,12 +54,12 @@ export default function MusicPlayer({
           {/* Album Cover */}
           <div className="album-cover-frame">
             <img
-              src={currentSong.cover || "/photos/photo1.jpg"}
+              src={currentSong.cover || "https://img.sanishtech.com/u/939e1fbffcad6bf66d4d59144580a1ab.jpg"}
               alt={currentSong.title}
               className={`album-cover ${isPlaying ? 'spin-cover' : ''}`}
               onError={(e) => {
                 e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
+                if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
               }}
             />
             <div className="photo-fallback" style={{ display: 'none' }}>
@@ -129,6 +129,31 @@ export default function MusicPlayer({
               className="volume-range"
             />
           </div>
+
+          {/* Playlist Track List */}
+          {playlist.length > 0 && (
+            <div className="playlist-tracks">
+              <div className="playlist-tracks-header">
+                <ListMusic size={16} color="#FF4F81" />
+                <span>Select a Song</span>
+              </div>
+              <div className="playlist-track-list">
+                {playlist.map((song, idx) => (
+                  <button
+                    key={song.id || idx}
+                    className={`track-item ${idx === currentTrackIndex ? 'active' : ''}`}
+                    onClick={() => onSelectTrack && onSelectTrack(idx)}
+                  >
+                    <span className="track-item-num">{idx === currentTrackIndex && isPlaying ? "▶" : idx + 1}</span>
+                    <div className="track-item-info">
+                      <span className="track-item-title">{song.title}</span>
+                      <span className="track-item-artist">{song.artist}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </motion.div>
     </section>

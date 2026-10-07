@@ -293,6 +293,83 @@
   color: #FFF;
 }
 
+/* Playlist Tracks */
+.playlist-tracks {
+  width: 100%;
+  margin-top: 0.8rem;
+  border-top: 1px solid var(--glass-border);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.playlist-tracks-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.playlist-track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  color: var(--text-warm);
+}
+
+.track-item:hover {
+  background: rgba(255, 79, 129, 0.12);
+  border-color: rgba(255, 79, 129, 0.3);
+}
+
+.track-item.active {
+  background: rgba(255, 79, 129, 0.2);
+  border-color: var(--accent-pink);
+  font-weight: 600;
+}
+
+.track-item-num {
+  font-size: 0.85rem;
+  color: var(--accent-pink);
+  width: 16px;
+  text-align: center;
+}
+
+.track-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-item-title {
+  font-size: 0.9rem;
+  color: var(--text-warm);
+}
+
+.track-item-artist {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
 @media (max-width: 480px) {
   .music-title {
     font-size: 2.2rem;

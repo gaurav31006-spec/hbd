@@ -80,33 +80,32 @@ export const loveData = {
   ],
 
   // Playlist configuration for the Music Player
-  // Add your own MP3 files to public/music/
   songs: [
     {
       id: "song-1",
-      title: "I Think They Call This Love",
-      artist: "Elliot James Reay",
-      file: "/music/call-this-love.mp3",
-      cover: "https://img.sanishtech.com/u/939e1fbffcad6bf66d4d59144580a1ab.jpg"
-    },
-    {
-      id: "song-2",
-      title: "Golden Hour",
-      artist: "JVKE",
-      file: "/music/golden-hour.mp3",
+      title: "Those Eyes",
+      artist: "New West",
+      file: "/music/those-eyes.mp3",
       cover: "https://img.sanishtech.com/u/92b011491ae4137d30540e2e6a5ef74f.jpg"
     },
     {
+      id: "song-2",
+      title: "Until I Found You",
+      artist: "Stephen Sanchez",
+      file: "/music/until-i-found-you.mp3",
+      cover: "https://img.sanishtech.com/u/939e1fbffcad6bf66d4d59144580a1ab.jpg"
+    },
+    {
       id: "song-3",
-      title: "Happier Than Ever",
-      artist: "Billie Eilish",
-      file: "/music/happier-than-ever.mp3",
+      title: "I Like Me Better",
+      artist: "Lauv",
+      file: "/music/i-like-me-better.mp3",
       cover: "https://img.sanishtech.com/u/b8aeb71bae6f2817a9e7041da00b8c44.jpg"
     }
   ],
 
   // The Special Birthday Message displayed inside the animated envelope
-  loveLetter: `Dear [BESTIE_NAME],
+  loveLetter: `Dear khammuuu,
 
 Today is your birthday, and I couldn't let it pass without making something special for you.
 
