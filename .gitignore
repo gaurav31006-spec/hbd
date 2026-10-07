@@ -22,9 +22,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Private Config & Personal Data (Hides her photo URLs & messages from Git)
-src/data/loveData.js
-
 # Sensitive Media & Personal Photos
 public/photos/*
 !public/photos/.gitkeep
@@ -37,7 +34,7 @@ src/assets/photos/*
 *.webp
 *.gif
 
-# Environment Files
+# Environment Files (Private Netlify / Local keys)
 .env
 .env.local
 .env.production
