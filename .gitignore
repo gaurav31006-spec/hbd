@@ -25,8 +25,7 @@ dist-ssr
 # Sensitive Media & Personal Photos
 public/photos/*
 !public/photos/.gitkeep
-public/music/*
-!public/music/.gitkeep
+!public/music/*
 src/assets/photos/*
 *.jpg
 *.jpeg
