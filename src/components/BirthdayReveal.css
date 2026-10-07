@@ -1,0 +1,168 @@
+/* BirthdayReveal.css */
+.birthday-reveal-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  z-index: 1;
+}
+
+/* Floating background photo collage */
+.floating-collage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.collage-photo {
+  position: absolute;
+  left: var(--x, 10%);
+  top: var(--y, 10%);
+  width: var(--size, 120px);
+  height: var(--size, 120px);
+  border-radius: 12px;
+  overflow: hidden;
+  transform: rotate(var(--rotate, 0deg));
+  opacity: 0.18;
+  filter: blur(1.5px);
+  animation: floatPhoto 6s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  border: 1px solid rgba(255, 79, 129, 0.3);
+}
+
+.collage-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes floatPhoto {
+  0%, 100% { transform: rotate(var(--rotate, 0deg)) translateY(0); }
+  50% { transform: rotate(var(--rotate, 0deg)) translateY(-12px); }
+}
+
+/* Centered Content */
+.reveal-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 680px;
+}
+
+.birthday-main-card {
+  text-align: center;
+  padding: 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), inset 0 0 40px rgba(255, 79, 129, 0.2);
+  border: 1px solid rgba(255, 79, 129, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.birthday-main-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 79, 129, 0.12) 0%, transparent 60%);
+  animation: rotateBg 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateBg {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.birthday-sparkles {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
+.happy-birthday-text {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+}
+
+.my-love-text {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.heart-row {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.reveal-heart-icon {
+  filter: drop-shadow(0 0 12px rgba(255, 79, 129, 0.8));
+}
+
+/* Final Message Card */
+.final-message-card {
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.final-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.final-line {
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  font-weight: 500;
+  color: var(--text-warm);
+  line-height: 1.5;
+}
+
+.final-love-sign {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-top: 1.5rem;
+  filter: drop-shadow(0 0 10px rgba(255, 79, 129, 0.5));
+}
+
+@media (max-width: 480px) {
+  .birthday-main-card {
+    padding: 2.5rem 1.5rem;
+  }
+  .final-message-card {
+    padding: 2rem 1.25rem;
+  }
+  .collage-photo {
+    opacity: 0.1;
+  }
+}

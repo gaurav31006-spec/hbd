@@ -1,0 +1,247 @@
+/* TaskSection.css */
+.tasks-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  z-index: 1;
+}
+
+.tasks-header {
+  text-align: center;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tasks-badge {
+  background: rgba(255, 79, 129, 0.15);
+  border: 1px solid var(--glass-border);
+  padding: 6px 18px;
+  border-radius: 30px;
+  color: var(--accent-soft);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.tasks-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.tasks-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.tasks-container {
+  max-width: 540px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.task-stepper {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.step-dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.step-dot.current {
+  border-color: var(--accent-pink);
+  color: var(--accent-pink);
+  box-shadow: 0 0 15px rgba(255, 79, 129, 0.4);
+}
+
+.step-dot.completed {
+  background: var(--accent-pink);
+  border-color: var(--accent-pink);
+  color: #FFF;
+}
+
+.task-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.task-name {
+  font-size: 1.3rem;
+  color: var(--accent-rose);
+  letter-spacing: 1px;
+}
+
+.task-instruction {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-warm);
+}
+
+.task-hint {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.heart-tap-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  filter: drop-shadow(0 0 20px rgba(255, 79, 129, 0.5));
+  transition: transform 0.2s ease;
+}
+
+.task-counter {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-soft);
+}
+
+.hidden-heart-playground {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: rgba(5, 5, 5, 0.5);
+  border: 1px dashed var(--glass-border);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+.decoy {
+  font-size: 1.6rem;
+  opacity: 0.5;
+}
+
+.secret-hidden-heart {
+  position: absolute;
+  bottom: 12px;
+  right: 25px;
+  cursor: pointer;
+  padding: 6px;
+  opacity: 0.85;
+}
+
+.task3-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.sentence-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.fill-input {
+  background: rgba(5, 5, 5, 0.7);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  color: var(--accent-soft);
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  width: 110px;
+  text-align: center;
+}
+
+.task-submit-btn {
+  background: linear-gradient(135deg, #FF4F81 0%, #FF6B9A 100%);
+  color: #FFF;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+
+}
+
+.quiz-options {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.quiz-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
+  color: var(--text-warm);
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.quiz-btn:hover {
+  background: rgba(255, 79, 129, 0.2);
+  border-color: var(--accent-pink);
+  transform: translateY(-2px);
+}
+
+.task-success-msg {
+  background: rgba(255, 79, 129, 0.15);
+  border: 1px solid var(--accent-pink);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--accent-soft);
+  margin-top: 0.5rem;
+}
+
+.sub-quote {
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin-top: 4px;
+  color: var(--text-warm);
+}
+
+@media (max-width: 480px) {
+  .tasks-title {
+    font-size: 2.2rem;
+  }
+  .quiz-options {
+    flex-direction: column;
+  }
+}

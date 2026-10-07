@@ -1,0 +1,59 @@
+.loading-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #160A10 0%, #0D070B 60%, #050505 100%);
+  padding: 2rem;
+  z-index: 10;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  text-align: center;
+  max-width: 450px;
+}
+
+.loading-heart-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beating-heart {
+  filter: drop-shadow(0 0 25px rgba(255, 79, 129, 0.85));
+}
+
+.loading-text-box {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-line {
+  font-size: 1.6rem;
+  color: var(--text-warm);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.progress-bar-track {
+  width: 260px;
+  height: 6px;
+  background: rgba(255, 107, 154, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF4F81 0%, #FFB6C9 100%);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 79, 129, 0.6);
+}

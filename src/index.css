@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap');
+
+:root {
+  --bg-dark: #050505;
+  --bg-wine: #0D070B;
+  --bg-wine-deep: #160A10;
+  
+  --accent-pink: #FF4F81;
+  --accent-rose: #FF6B9A;
+  --accent-soft: #FFB6C9;
+  
+  --text-main: #FFFFFF;
+  --text-warm: #F5E9ED;
+  --text-muted: #BFA9B1;
+  
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-handwriting: 'Dancing Script', cursive;
+  
+  --glass-bg: rgba(22, 10, 16, 0.65);
+  --glass-border: rgba(255, 107, 154, 0.18);
+  --glow-pink: 0 0 25px rgba(255, 79, 129, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-dark);
+  color: var(--text-warm);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 154, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-pink);
+}
+
+/* Global Glass Card Utility */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Romantic Headings */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting);
+}
+
+/* Gradient Text */
+.text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFB6C9 50%, #FF4F81 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Heart Glow Animation */
+@keyframes heartPulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 79, 129, 0.5)); }
+  50% { transform: scale(1.12); filter: drop-shadow(0 0 25px rgba(255, 79, 129, 0.85)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 79, 129, 0.5)); }
+}
+
+.animate-heart-pulse {
+  animation: heartPulse 2.2s infinite ease-in-out;
+}
+
+/* Sound toggle button */
+.sound-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99;
+  background: rgba(13, 7, 11, 0.75);
+  border: 1px solid var(--glass-border);
+  color: var(--text-warm);
+  padding: 10px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.sound-toggle-btn:hover {
+  background: rgba(255, 79, 129, 0.2);
+  border-color: var(--accent-pink);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+  .sound-toggle-btn {
+    top: 12px;
+    right: 12px;
+    padding: 8px 12px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Accessible focus ring */
+button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent-pink);
+  outline-offset: 3px;
+}
+
+/* Fallback Photo Graphic */
+.photo-fallback {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  background: linear-gradient(135deg, #160A10 0%, #2A0E1C 50%, #0D070B 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-soft);
+  font-family: var(--font-serif);
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-fallback::after {
+  content: '❤️';
+  position: absolute;
+  font-size: 5rem;
+  opacity: 0.08;
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

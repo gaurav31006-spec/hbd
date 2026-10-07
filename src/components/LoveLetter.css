@@ -1,0 +1,158 @@
+/* LoveLetter.css */
+.letter-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.letter-wrapper {
+  max-width: 680px;
+  width: 100%;
+  padding: 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.letter-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.letter-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.letter-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* Physical Envelope Design */
+.envelope-container {
+  width: 300px;
+  height: 200px;
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+  margin: 1.5rem 0;
+}
+
+.envelope-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1A0D15 0%, #2D1424 100%);
+  border: 2px solid var(--accent-pink);
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 79, 129, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 100px solid rgba(255, 79, 129, 0.3);
+  transform-origin: top;
+}
+
+.envelope-seal {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(13, 7, 11, 0.9);
+  border: 2px solid var(--accent-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(255, 79, 129, 0.6);
+  z-index: 5;
+}
+
+.envelope-label {
+  font-size: 1.3rem;
+  color: var(--accent-soft);
+  margin-top: 1rem;
+  z-index: 5;
+}
+
+/* Handwritten Paper Design */
+.letter-paper {
+  background: #FFFDF9;
+  color: #2B1820;
+  width: 100%;
+  max-width: 580px;
+  padding: 3rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+  text-align: left;
+  position: relative;
+  line-height: 1.8;
+  font-size: 1.75rem;
+  border: 1px solid #EAE0D5;
+}
+
+.paper-texture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#E8D5C4 1px, transparent 0);
+  background-size: 24px 24px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.letter-text-content {
+  position: relative;
+  z-index: 2;
+}
+
+.letter-line {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .letter-section {
+    padding: 3rem 1rem;
+  }
+  .letter-wrapper {
+    padding: 2.2rem 1.25rem;
+  }
+  .letter-title {
+    font-size: 2.2rem;
+  }
+  .envelope-container {
+    width: 260px;
+    height: 175px;
+  }
+  .envelope-flap {
+    border-left-width: 130px;
+    border-right-width: 130px;
+    border-top-width: 85px;
+  }
+  .letter-paper {
+    padding: 1.8rem 1.25rem;
+    font-size: 1.35rem;
+    line-height: 1.6;
+  }
+}

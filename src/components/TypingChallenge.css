@@ -1,0 +1,113 @@
+.typing-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: radial-gradient(circle at center, #160A10 0%, #0D070B 60%, #050505 100%);
+  z-index: 1;
+}
+
+.typing-card {
+  max-width: 480px;
+  width: 100%;
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.65), inset 0 0 25px rgba(255, 79, 129, 0.15);
+  transition: all 0.5s ease;
+}
+
+.submitted-glow {
+  box-shadow: 0 0 60px rgba(255, 79, 129, 0.65), inset 0 0 40px rgba(255, 182, 201, 0.3);
+  border-color: var(--accent-pink);
+}
+
+.heart-icon-badge {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(255, 79, 129, 0.1);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typing-header {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.typing-prompt {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.typing-input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+}
+
+.typing-input {
+  width: 100%;
+  height: 56px;
+  background: rgba(5, 5, 5, 0.7);
+  border: 2px solid var(--glass-border);
+  border-radius: 50px;
+  color: #FFF;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0 2rem;
+  transition: all 0.3s ease;
+}
+
+.typing-input:focus {
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 20px rgba(255, 79, 129, 0.4);
+}
+
+.typing-heart-indicator {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  animation: heartPulse 1.2s infinite ease-in-out;
+}
+
+.unlock-heart-btn {
+  background: linear-gradient(135deg, #FF4F81 0%, #FF6B9A 100%);
+  color: #FFF;
+  border: none;
+  padding: 16px 36px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(255, 79, 129, 0.5);
+}
+
+.expanding-heart-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.giant-pulsing-heart {
+  animation: heartPulse 1.2s infinite ease-in-out;
+}

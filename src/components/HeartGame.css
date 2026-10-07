@@ -1,0 +1,116 @@
+/* HeartGame.css */
+.heart-game-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.game-card {
+  max-width: 580px;
+  width: 100%;
+  padding: 3rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 480px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.game-score-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 79, 129, 0.15);
+  border: 1px solid var(--accent-pink);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-weight: 700;
+  color: var(--accent-soft);
+  font-size: 1rem;
+}
+
+.game-instruction {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.falling-area {
+  width: 100%;
+  height: 320px;
+  background: rgba(5, 5, 5, 0.4);
+  border: 1px dashed var(--glass-border);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.falling-heart-item {
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.falling-heart-icon {
+  filter: drop-shadow(0 0 12px rgba(255, 79, 129, 0.7));
+  transition: transform 0.1s ease;
+}
+
+.falling-heart-item:active .falling-heart-icon {
+  transform: scale(1.3);
+}
+
+.game-punchline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem;
+}
+
+.punchline.p1 {
+  font-size: 2rem;
+  color: var(--text-muted);
+}
+
+.punchline.p2 {
+  font-size: 2.2rem;
+  color: var(--text-warm);
+}
+
+.punchline.p3 {
+  font-size: 3.8rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+@media (max-width: 480px) {
+  .game-title {
+    font-size: 1.8rem;
+  }
+  .punchline.p3 {
+    font-size: 2.8rem;
+  }
+}
